@@ -1,0 +1,1 @@
+export let app = angular.module('app', ['appTemplates']);

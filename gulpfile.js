@@ -7,7 +7,9 @@ let autoprefixer = require('gulp-autoprefixer');
 let templateCache = require('gulp-angular-templatecache');
 let concat = require('gulp-concat');
 let sourcemaps = require('gulp-sourcemaps');
+let insert = require('gulp-insert');
 let tsProject = ts.createProject('tsconfig.json', { sortOutput: true });
+let npmPackage = require('./package.json');
 
 gulp.task('index', () => {
     return gulp.src('src/index.html')
@@ -56,6 +58,15 @@ gulp.task('less', () => {
         }))
         .pipe(concat('styles.css'))
         .pipe(sourcemaps.write())
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('version', () => {
+    let versionInfo = `/*
+    Version: ${npmPackage.version}
+    Release date: ${new Date()}\n*/\n\n`;
+    return gulp.src('dist/app.js')
+        .pipe(insert.prepend(versionInfo))
         .pipe(gulp.dest('dist'));
 });
 

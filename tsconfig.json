@@ -1,13 +1,12 @@
 {
+    "allowJs": true,
     "compilerOptions": {
         "module": "amd",
         "target": "es5",
-        "noImplicitAny": false,
         "sourceMap": true,
+        "removeComments": false,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
         "outFile": "app.js"
-    },
-     "files": [
-        "src/scripts/index.ts",
-        "typings/index.d.ts"
-    ]
+    }
 }

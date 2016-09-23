@@ -8,7 +8,7 @@ let templateCache = require('gulp-angular-templatecache');
 let concat = require('gulp-concat');
 let sourcemaps = require('gulp-sourcemaps');
 let insert = require('gulp-insert');
-let tsProject = ts.createProject('tsconfig.json', { sortOutput: true });
+let tsProject = ts.createProject('tsconfig.json');
 let npmPackage = require('./package.json');
 
 gulp.task('index', () => {
@@ -41,7 +41,7 @@ gulp.task('libs', () => {
 
 gulp.task('ts', () => {
     let tsResult = tsProject.src()
-        .pipe(ts(tsProject));
+        .pipe(tsProject());
 
     return tsResult.js
         .pipe(gulp.dest('dist'));
